@@ -11,26 +11,28 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import dotenv_values
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+CREDENTIALS = dotenv_values(BASE_DIR / "bookmarks/.env")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-nn_i2aoxm$nc9ka6*$kgt$o^qc1--(ix*v@4n$4%f#p5@4p=q)'
+SECRET_KEY = CREDENTIALS["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'account.apps.AccountConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -121,3 +123,17 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Login and Logout variables
+LOGIN_REDIRECT_URL = "dashboard"
+LOGIN_URL = "login"
+LOGOUT_URL = "logout"
+
+# Email server configuration
+# EMAIL_HOST = CREDENTIALS["EMAIL_HOST"]
+# EMAIL_HOST_USER = CREDENTIALS["EMAIL_HOST_USER"]
+# EMAIL_HOST_PASSWORD = CREDENTIALS["EMAIL_HOST_PASSWORD"]
+# EMAIL_PORT = CREDENTIALS["EMAIL_PORT"]
+# EMAIL_USE_TLS = CREDENTIALS["EMAIL_USE_TLS"]
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
