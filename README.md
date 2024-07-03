@@ -13,9 +13,12 @@ To build a social application that will allow users to share images that they fi
 
 #### 1. Authentication system
 
-    For loggin in, logging out, changing password and resetting password I used django's authentication system which is found in the*django.contrib.auth* application.
+    For logging in, logging out, changing password and resetting password I used django's authentication system which is found in the*django.contrib.auth* application.
 
-I have used django's built in authentication views which can be found at https://docs.djangoproject.com/en/5.0/topics/auth/default/#all-authentication-views.
+    I have used django's built in authentication views which can be found at https://docs.djangoproject.com/en/5.0/topics/auth/default/#all-authentication-views.
 
+    I have added a registration method for users to create a new account. When a user creates a new account a Profile model will be assciated to them where they can add 	date of birth and photo. for this purpose I used a registration form, a view and two templates (register.html and register_done.html) for registration and a custom model name Profile for user profile. plus users are able to edit their profile once they are logged in.
 
-    I have also added a registration method for users to create a new account. When a user creates a new account a Profile model will be assciated to them where they can add 	date of birth and photo. for this purpose I used a registration form, a view and two templates (register.html and register_done.html) for registration and a custom model name Profile for user profile. plus users are able to edit their profile once they are logged in.
+    I have used django's**messages** framework to display success and error messages during profile editing.
+
+    Users can authenticate using their username or email. for email authentication I have used a custome authentication backend and added it to AUTHENTICATION_BACKENDS attribute of settings.py. I have also applied methods to restrict users from using exsiting email addresses during registering and editing their profiles.
