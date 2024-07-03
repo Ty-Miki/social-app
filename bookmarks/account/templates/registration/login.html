@@ -7,7 +7,9 @@
     {% if form.errors %}
         <p>Username and Password didn't match. try again.</p>
     {% else %}
-        <p>Use the following form to login</p>
+        <p>Use the following form to login
+            If you don't have an account <a href="{% url 'register' %}">register here</a>
+        </p>
         <div class="login-form">
             <form action="" method="post">
                 {{ form.as_p }}

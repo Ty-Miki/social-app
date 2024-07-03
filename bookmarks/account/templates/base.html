@@ -28,7 +28,7 @@
         
         <span class="user">
             {% if request.user.is_authenticated %}       
-                Hello {{ request.user.firs_name|default:request.user.username }},
+                Hello {{ request.user.first_name|default:request.user.username }},
                 
                 <form action="{% url 'logout' %}" method="post">
                     {% csrf_token %}
