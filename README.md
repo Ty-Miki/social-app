@@ -22,3 +22,15 @@ To build a social application that will allow users to share images that they fi
     I have used django's**messages** framework to display success and error messages during profile editing.
 
     Users can authenticate using their username or email. for email authentication I have used a custome authentication backend and added it to AUTHENTICATION_BACKENDS attribute of settings.py. I have also applied methods to restrict users from using exsiting email addresses during registering and editing their profiles.
+
+I have added a social authentication system to allow users use SSO services from Facebook and Google.
+
+##### Sitemap
+
+- admin/ - use this url to navigate the admin interface,
+- account/ - use this url to navigate user Authenticatin and/or Authorization pages,
+  - Logging in, Logging out, Changing password and Reseting Password,
+  - account/ - user dashboard,
+  - account/register - to create a new account,
+  - account/edit - to edit user profile.
+- social-auth - for SSO services.
