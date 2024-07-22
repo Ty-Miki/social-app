@@ -25,6 +25,11 @@ To build a social application that will allow users to share images that they fi
 
 I have added a social authentication system to allow users use SSO services from Facebook and Google.
 
+#### 2. Sharing content
+
+- This is a system to let users share ( either by uploading or by bookmarking from other websites ) and to let them like images posted by other users
+  - A data model for images must be cretaed with one-to-many relationship with a user, many-to-many relatioship with user likes and other fields like title, slug, URL, image (to save the actual image in the database) and description.
+
 ##### Sitemap
 
 - admin/ - use this url to navigate the admin interface,
@@ -33,4 +38,4 @@ I have added a social authentication system to allow users use SSO services from
   - account/ - user dashboard,
   - account/register - to create a new account,
   - account/edit - to edit user profile.
-- social-auth - for SSO services.
+- social-auth - for **SSO** services.
