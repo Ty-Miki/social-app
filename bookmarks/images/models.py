@@ -1,7 +1,7 @@
-from typing import Iterable
 from django.db import models
 from django.conf import settings
 from django.utils.text import slugify
+from django.urls import reverse
 
 # Create your models here.
 class Image(models.Model):
@@ -12,7 +12,7 @@ class Image(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, blank=True)
     url = models.URLField(max_length=2000)
-    Image = models.ImageField(upload_to="images/%Y/%m/%d/")
+    image = models.ImageField(upload_to="images/%Y/%m/%d/")
     description = models.TextField(blank=True)
     created = models.DateField(auto_now_add=True)
 
@@ -31,7 +31,11 @@ class Image(models.Model):
         return self.title
     
     # Override save method of models.Model class to add slug automatically.
-    def save(self, force_insert: bool = ..., force_update: bool = ..., using: str | None = ..., update_fields: Iterable[str] | None = ...) -> None:
+    def save(self, *args, **kwargs) -> None:
         if not self.slug:
             self.slug = slugify(self.title)
-        super().save(force_insert, force_update, using, update_fields)
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse("images:image_detail", args=[self.id,
+                                                    self.slug])

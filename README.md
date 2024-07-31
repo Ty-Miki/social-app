@@ -27,8 +27,19 @@ I have added a social authentication system to allow users use SSO services from
 
 #### 2. Sharing content
 
-- This is a system to let users share ( either by uploading or by bookmarking from other websites ) and to let them like images posted by other users
-  - A data model for images must be cretaed with one-to-many relationship with a user, many-to-many relatioship with user likes and other fields like title, slug, URL, image (to save the actual image in the database) and description.
+- This is a system to let users share images ( either by uploading or by bookmarking from other websites ) and to let them like the images posted by other users.
+- The requriements for this are:
+  - A data model for images must be created with one-to-many relationship with a user, many-to-many relatioship with user likes and other fields like title, slug, URL, image (to save the actual image in the database) and description.
+  - A form and a view to let users share/bookmark images from other websites.
+    - For this purpose a Javascript bookmarklet is required, which can run on any website and let users bookmark images from them.
+
+Note: The javascript bookmarklet works as follows.
+
+- The user drags a link from the django server to their bookmarks bar.
+  - This link contains Javascript code in its href attribute, so the code will be stored in the bookmark.
+  - Then the user naviagtes to any website and clicks on the bookmark which will excute the Javascript code.
+
+Additionally Javascript AJAX requests are used for **liking or unliking** images and **infinite pagination list** for images.
 
 ##### Sitemap
 
