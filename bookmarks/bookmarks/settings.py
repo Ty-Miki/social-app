@@ -12,6 +12,14 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 from dotenv import dotenv_values
+from django.urls import reverse_lazy
+
+# Build canonical-urls for user-detail view using ABSOLUTE_URL_OVERRIDES parameter.
+ABSOLUTE_URL_OVERRIDES = {
+    "auth.user": lambda user: reverse_lazy("user_detail",
+                                           args=[user.username])
+}
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent

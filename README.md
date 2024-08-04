@@ -41,6 +41,10 @@ Note: The javascript bookmarklet works as follows.
 
 Additionally Javascript AJAX requests are used for **liking or unliking** images and **infinite pagination list** for images.
 
+#### 4. User actions
+
+- A follow system is added using a Django view and JavaScript AJAX request using the fetch() API.
+
 ##### Sitemap
 
 - admin/ - use this url to navigate the admin interface,

@@ -30,12 +30,14 @@
             {{ image.description|linebreaks }}
         </div>
         <div class="image-links">
+            <h2>Image liked by</h2>
             {% for user in image.user_likes.all %}
-                <div>
-                    {% if user.profile.photo %}
-                        <img src="{{ user.profile.photo.url }}" alt="Photo of {{ user.first_name }}">
-                    {% endif %}
-                    <p>{{ user.first_name }}</p>
+                <div class="user">
+                    <div class="info">
+                        <a href="{{ user.get_absolute_url }}" class="title">
+                            {{ user.get_full_name }}
+                        </a>
+                    </div>
                 </div>
             {% empty %}
                 Nobody likes this image yet.
