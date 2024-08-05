@@ -44,6 +44,11 @@ Additionally Javascript AJAX requests are used for **liking or unliking** images
 #### 4. User actions
 
 - A follow system is added using a Django view and JavaScript AJAX request using the fetch() API.
+- A generic activity stream system has been added. users can see activities like:
+  - When new user creates account,
+  - When a user bookmarks an image,
+  - When a user likes an image,
+  - When a user follows another user.
 
 ##### Sitemap
 

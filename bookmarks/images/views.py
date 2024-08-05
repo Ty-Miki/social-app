@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import ImageCreateForm
 from .models import Image
+from actions.utils import create_action
 
 # Create your views here.
 
@@ -21,6 +22,12 @@ def image_create(request: HttpRequest) -> HttpResponse:
             new_image.user = request.user
             new_image.save()
             
+            # Add an action using bookmarked image as a verb.
+            create_action(user=request.user,
+                          verb='bookmarked image',
+                          target=new_image)
+            
+            # Show success message.
             messages.success(request,
                          "Image added successfully")
             
@@ -49,6 +56,12 @@ def image_like(request: HttpRequest) -> HttpResponse:
             image = Image.objects.get(id=image_id)
             if action == "like":
                 image.user_likes.add(request.user)
+
+                # Add an action using likes as a verb.
+                create_action(user=request.user,
+                              verb="likes",
+                              target=image)
+                
             else:
                 image.user_likes.remove(request.user)
             return JsonResponse({"status": "ok"})
