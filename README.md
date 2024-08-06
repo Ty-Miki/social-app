@@ -49,6 +49,8 @@ Additionally Javascript AJAX requests are used for **liking or unliking** images
   - When a user bookmarks an image,
   - When a user likes an image,
   - When a user follows another user.
+- Sorted images by popularity.
+  - This is done by denormalizing the user_likes field into a separtae field calld total_likes to optimize performance. this field is updated using *m2m changed* django signal.
 
 ##### Sitemap
 

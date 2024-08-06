@@ -71,7 +71,7 @@ def image_like(request: HttpRequest) -> HttpResponse:
 
 @login_required
 def image_list(request: HttpRequest) -> HttpResponse:
-    images = Image.objects.all()
+    images = Image.objects.order_by('-total_likes')
     paginator = Paginator(images, 8)
     page = request.GET.get('page') # When requested by the browser.
     images_only = request.GET.get('images_only') # When requested by JS.
@@ -87,7 +87,7 @@ def image_list(request: HttpRequest) -> HttpResponse:
             return HttpResponse("")
         # If page out of range retrun last page of results
         images = paginator.page(paginator.num_pages)
-    
+
     if images_only:
         return render(request,
                       'images/image/list_images.html',

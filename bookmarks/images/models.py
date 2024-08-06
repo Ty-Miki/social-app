@@ -16,6 +16,8 @@ class Image(models.Model):
     description = models.TextField(blank=True)
     created = models.DateField(auto_now_add=True)
 
+    total_likes = models.PositiveIntegerField(default=0)
+
     # Add many-to-many relationship between users likes and images.
     user_likes = models.ManyToManyField(settings.AUTH_USER_MODEL,
                                         related_name="images_liked",
