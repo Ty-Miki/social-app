@@ -4,6 +4,7 @@
 
 {% block content %}
     <h1>Images bookmarked</h1>
+    <h2><a href="{% url 'images:ranking' %}">Image ranking</a></h2>
     <div id="image-list">
         {% include "images/image/list_images.html" %}
     </div>

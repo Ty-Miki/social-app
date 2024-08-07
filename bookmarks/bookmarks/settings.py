@@ -182,6 +182,12 @@ SOCIAL_AUTH_PIPELINE = [
     'social_core.pipeline.user.user_details',
 ]
 
-INTERNAL_IPS = [
-    '127.0.0.1',
-]
+# Internal IPs list to show Django debug toolbar menu.
+# INTERNAL_IPS = [
+#     '127.0.0.1',
+# ]
+
+# Redis configuration of host, port and database
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB = 0

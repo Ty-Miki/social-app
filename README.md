@@ -1,64 +1,35 @@
-# Social Application
+This is an image bookmarking application with many built in features.
 
-### Objective
 
-To build a social application that will allow users to share images that they find on the internet.
+### Features
+
+- User Authentication and Authorization,
+  - Login, Logut, Passoword change and Password reset options,
+  - Custom Authentication backend to authenticate users with both username and email,
+  - Social authentication using Facebook and Google.
+- User registration with extended user models to accept profile photo and DOB.
+  - Checks for existing emails before signing up the user.
+- Notify users when they complete certain actions,
+  - changing profile,
+  - bookmarking an image ...
+- Bookmarking an image from any other website,
+- AJAX requests to let users like/unlike images and follow/unfollow each other,
+- Infinite scroll pagination to images using JavaScript,
+- Generic activity stream to let users know what is hapening.
+  - Users can see when other users perform certain actions like:
+    - A user bookmarks an image,
+    - A user likes an image,
+    - A user creates an account,
+    - A user starts following another user ...
+- Django debug toolbar integrated for debugging,
+  - is configured to run only when IP address is 127.0.0.1/localhost.
+- Counting image views and ranking them by their veiw using Redis.
 
 ### Requirements
 
-- Authentication system: to register, login and change or reset passwords.
-- A follow system: to allow users follow each other on the website.
-- A system for users to share images from any website.
-- An activity stream that allows users to see the content uploaded by users that they follow.
+- All required packages are found in the *requirements.txt* file.
 
-#### 1. Authentication system
 
-    For logging in, logging out, changing password and resetting password I used django's authentication system which is found in the*django.contrib.auth* application.
+If you want to use this app and need help setting it up I would be happy to help, contact me at mekbibabiro@gmail.com.
 
-    I have used django's built in authentication views which can be found at https://docs.djangoproject.com/en/5.0/topics/auth/default/#all-authentication-views.
-
-    I have added a registration method for users to create a new account. When a user creates a new account a Profile model will be assciated to them where they can add 	date of birth and photo. for this purpose I used a registration form, a view and two templates (register.html and register_done.html) for registration and a custom model name Profile for user profile. plus users are able to edit their profile once they are logged in.
-
-    I have used django's**messages** framework to display success and error messages during profile editing.
-
-    Users can authenticate using their username or email. for email authentication I have used a custome authentication backend and added it to AUTHENTICATION_BACKENDS attribute of settings.py. I have also applied methods to restrict users from using exsiting email addresses during registering and editing their profiles.
-
-I have added a social authentication system to allow users use SSO services from Facebook and Google.
-
-#### 2. Sharing content
-
-- This is a system to let users share images ( either by uploading or by bookmarking from other websites ) and to let them like the images posted by other users.
-- The requriements for this are:
-  - A data model for images must be created with one-to-many relationship with a user, many-to-many relatioship with user likes and other fields like title, slug, URL, image (to save the actual image in the database) and description.
-  - A form and a view to let users share/bookmark images from other websites.
-    - For this purpose a Javascript bookmarklet is required, which can run on any website and let users bookmark images from them.
-
-Note: The javascript bookmarklet works as follows.
-
-- The user drags a link from the django server to their bookmarks bar.
-  - This link contains Javascript code in its href attribute, so the code will be stored in the bookmark.
-  - Then the user naviagtes to any website and clicks on the bookmark which will excute the Javascript code.
-
-Additionally Javascript AJAX requests are used for **liking or unliking** images and **infinite pagination list** for images.
-
-#### 4. User actions
-
-- A follow system is added using a Django view and JavaScript AJAX request using the fetch() API.
-- A generic activity stream system has been added. users can see activities like:
-  - When new user creates account,
-  - When a user bookmarks an image,
-  - When a user likes an image,
-  - When a user follows another user.
-- Sorted images by popularity.
-  - This is done by denormalizing the user_likes field into a separtae field calld total_likes to optimize performance. this field is updated using *m2m changed* django signal.
-- Installed django-debug-toolbar application to see website performance and optimize it.
-
-##### Sitemap
-
-- admin/ - use this url to navigate the admin interface,
-- account/ - use this url to navigate user Authenticatin and/or Authorization pages,
-  - Logging in, Logging out, Changing password and Reseting Password,
-  - account/ - user dashboard,
-  - account/register - to create a new account,
-  - account/edit - to edit user profile.
-- social-auth - for **SSO** services.
+**Bye.**
